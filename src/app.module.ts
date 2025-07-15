@@ -13,7 +13,7 @@ import { SalidasModule } from './salidas/salidas.module';
     port: 3306,
     username: 'root',
     password: '',
-    database: 'escueladb',
+    database: 'escuelita',
     synchronize: true,
     autoLoadEntities: true,
   }), GruposModule, TutoresModule, HorariosModule, SalidasModule],
