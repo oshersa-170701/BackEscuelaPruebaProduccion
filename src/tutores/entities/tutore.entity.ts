@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Alummno } from "src/alumnos/entities/alumno.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Tutore {
     @PrimaryGeneratedColumn()
@@ -11,6 +12,10 @@ export class Tutore {
     telefono: number;
     @Column()
     parentesco: string;
+
+    @OneToMany(()=>Alummno,(alumno)=>alumno.tutor)
+    alumno:Alummno
+
     @CreateDateColumn()
     createdAt: Date;
 }
