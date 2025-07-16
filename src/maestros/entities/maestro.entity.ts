@@ -1,7 +1,7 @@
 import { Alummno } from "src/alumnos/entities/alumno.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
-export class Tutore {
+export class Maestro {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
@@ -11,10 +11,10 @@ export class Tutore {
     @Column()
     telefono: number;
     @Column()
-    parentesco: string;
+    grupo: string;
 
-    @OneToMany(()=>Alummno,(alumno)=>alumno.tutor)
-    alumno:Alummno
+    // @OneToMany(()=>Alummno,(alumno)=>alumno.tutor)
+    // alumno:Alummno
 
     @CreateDateColumn()
     createdAt: Date;
