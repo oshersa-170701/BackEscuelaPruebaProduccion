@@ -1,3 +1,4 @@
+import { Grupochido } from "src/grupos/entities/grupo.entity";
 import { Tutore } from "src/tutores/entities/tutore.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
@@ -13,11 +14,11 @@ export class Alummno {
 
     @ManyToOne(()=>Tutore,(tutore)=>tutore.alumno)
     tutor:Tutore
+
+    @ManyToOne(()=>Grupochido,(grupo)=>grupo.alumno)
+    grupo:Grupochido
     
-    @Column()
-    grupo: string;
-    @Column()
-    maestro: string;
+
     @CreateDateColumn()
     createdAt: Date;
 
