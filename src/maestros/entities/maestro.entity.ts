@@ -1,4 +1,3 @@
-import { Alummno } from "src/alumnos/entities/alumno.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Maestro {
@@ -12,10 +11,10 @@ export class Maestro {
     telefono: number;
     @Column()
     grupo: string;
-
-    // @OneToMany(()=>Alummno,(alumno)=>alumno.tutor)
-    // alumno:Alummno
-
+    @Column({ unique: true })
+    email: string;
+    @Column({ select: false })
+    password: string;
     @CreateDateColumn()
     createdAt: Date;
 }
