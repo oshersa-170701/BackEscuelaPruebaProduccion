@@ -7,27 +7,27 @@ import { UpdateGrupoDto } from './dto/update-grupo.dto';
 export class GruposController {
   constructor(private readonly gruposService: GruposService) {}
 
-  @Post()
+  @Post("post")
   create(@Body() createGrupoDto: CreateGrupoDto) {
     return this.gruposService.create(createGrupoDto);
   }
 
-  @Get()
+  @Get("getAll")
   findAll() {
     return this.gruposService.findAll();
   }
 
-  @Get(':id')
+  @Get('getOne/:id')
   findOne(@Param('id') id: string) {
     return this.gruposService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   update(@Param('id') id: string, @Body() updateGrupoDto: UpdateGrupoDto) {
     return this.gruposService.update(+id, updateGrupoDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.gruposService.remove(+id);
   }
