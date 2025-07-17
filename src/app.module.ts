@@ -9,6 +9,7 @@ import { SalidasModule } from './salidas/salidas.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { MaestrosModule } from './maestros/maestros.module';
 import { EntradasModule } from './entradas/entradas.module';
+import { AdministradoresModule } from './administradores/administradores.module';
 @Module({
   imports: [ TypeOrmModule.forRoot({
     type: 'mysql',
@@ -19,7 +20,7 @@ import { EntradasModule } from './entradas/entradas.module';
     database: 'escuelita',
     synchronize: true,
     autoLoadEntities: true,
-  }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule],
+  }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
   controllers: [AppController],
   providers: [AppService],
 })
