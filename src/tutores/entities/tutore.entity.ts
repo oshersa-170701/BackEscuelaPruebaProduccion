@@ -12,7 +12,10 @@ export class Tutore {
     telefono: number;
     @Column()
     parentesco: string;
-
+    @Column()
+    email: string;
+    @Column()
+    contrasena: string;
     @OneToMany(()=>Alummno,(alumno)=>alumno.tutor)
     alumno:Alummno
 
