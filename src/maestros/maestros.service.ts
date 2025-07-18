@@ -19,9 +19,13 @@ export class MaestrosService {
     return this.maestroRepository.find();
   }
 
-  findOne(id: number) {
-    return this.maestroRepository.findOneBy({ id });
-  }
+  async findOne(id: number) {
+  return this.maestroRepository.findOne({
+    where: { id },
+    relations: ['grupo'],
+  });
+}
+
 
   update(id: number, updateMaestroDto: UpdateMaestroDto) {
     return this.maestroRepository.update(id, updateMaestroDto);

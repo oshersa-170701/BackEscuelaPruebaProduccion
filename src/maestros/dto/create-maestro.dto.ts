@@ -22,7 +22,7 @@ export class CreateMaestroDto {
     @IsString()
     @IsNotEmpty()
     contrasena: string;
-    @IsString()
+    
     @IsNotEmpty()
     grupo: Grupochido;
 }
