@@ -1,20 +1,29 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Grupochido } from "src/grupos/entities/grupo.entity";
+
 @Entity()
 export class Maestro {
     @PrimaryGeneratedColumn()
     id: number;
+
     @Column()
     nombre: string;
+
     @Column()
     apellido: string;
+
     @Column()
     telefono: number;
+
     @Column()
-    grupo: string;
-    @Column({ unique: true })
-    email: string;
+    correo: string;
+
     @Column({ select: false })
-    password: string;
+    contrasena: string;
+
+    @ManyToOne(() => Grupochido, (grupo) => grupo.maestros)
+    grupo: Grupochido;
+
     @CreateDateColumn()
     createdAt: Date;
 }
