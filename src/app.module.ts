@@ -17,7 +17,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
     port: 3306,
     username: 'root',
     password: '',
-    database: 'escuelita',
+    database: 'escuelita2',
     synchronize: true,
     autoLoadEntities: true,
   }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
