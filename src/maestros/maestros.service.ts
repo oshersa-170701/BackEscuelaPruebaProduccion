@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMaestroDto } from './dto/create-maestro.dto';
 import { UpdateMaestroDto } from './dto/update-maestro.dto';
+import { In, Repository } from 'typeorm';
+import { Maestro } from './entities/maestro.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class MaestrosService {
+  @InjectRepository(Maestro)
+  private  maestroRepository: Repository<Maestro>;
+
   create(createMaestroDto: CreateMaestroDto) {
-    return 'This action adds a new maestro';
+    const maestro = this.maestroRepository.create(createMaestroDto);
+    return this.maestroRepository.save(maestro);
   }
 
   findAll() {
-    return `This action returns all maestros`;
+    return this.maestroRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} maestro`;
+    return this.maestroRepository.findOneBy({ id });
   }
 
   update(id: number, updateMaestroDto: UpdateMaestroDto) {
-    return `This action updates a #${id} maestro`;
+    return this.maestroRepository.update(id, updateMaestroDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} maestro`;
+    return this.maestroRepository.delete(id);
   }
 }
