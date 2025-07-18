@@ -1,6 +1,6 @@
 import { Maestro } from "src/maestros/entities/maestro.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-
+import { Alummno } from "src/alumnos/entities/alumno.entity";
 @Entity()
 export class Grupochido {
     @PrimaryGeneratedColumn()
