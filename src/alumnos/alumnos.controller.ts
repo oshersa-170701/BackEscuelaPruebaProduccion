@@ -19,8 +19,19 @@ export class AlumnosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.alumnosService.findOne(+id);
+    return this.alumnosService.findOne(+id); // Buscar alumno por su ID
   }
+
+  @Get('tutor/:id')
+  findByTutor(@Param('id') id: string) {
+    return this.alumnosService.findByTutor(+id); // Buscar alumnos por ID del tutor
+  }
+
+  @Get('grupo/:id')
+  findByGrupo(@Param('id') id: string) {
+    return this.alumnosService.findByGrupo(+id); // Buscar alumnos por ID del grupo
+  }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlumnoDto: UpdateAlumnoDto) {

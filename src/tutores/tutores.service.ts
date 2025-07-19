@@ -1,21 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTutoreDto } from './dto/create-tutore.dto';
 import { UpdateTutoreDto } from './dto/update-tutore.dto';
+import { In, Repository } from 'typeorm';
+import { Tutore } from './entities/tutore.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TutoresService {
-  create(createTutoreDto: CreateTutoreDto) {
-  }
+@InjectRepository(Tutore)
+private tutoreRepository: Repository<Tutore>;
 
-  findAll() {
-  }
+async create(createTutoreDto: CreateTutoreDto) {
+  const tutore = this.tutoreRepository.create(createTutoreDto);
+  return await this.tutoreRepository.save(tutore);
+}
 
-  findOne(id: number) {
-  }
+async findAll() {
+  return await this.tutoreRepository.find();
+}
 
-  update(id: number, updateTutoreDto: UpdateTutoreDto) {
-  }
+async findOne(id: number) {
+  return await this.tutoreRepository.findOneBy({ id });
+}
 
-  remove(id: number) {
-  }
+async update(id: number, updateTutoreDto: UpdateTutoreDto) {
+  return await this.tutoreRepository.update(id, updateTutoreDto);
+}
+
+async remove(id: number) {
+  return await this.tutoreRepository.delete(id);
+}
+
 }
