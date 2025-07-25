@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class MaestrosService {
   @InjectRepository(Maestro)
-  private  maestroRepository: Repository<Maestro>;
+  private maestroRepository: Repository<Maestro>;
 
   create(createMaestroDto: CreateMaestroDto) {
     const maestro = this.maestroRepository.create(createMaestroDto);
@@ -20,12 +20,11 @@ export class MaestrosService {
   }
 
   async findOne(id: number) {
-  return this.maestroRepository.findOne({
-    where: { id },
-    relations: ['grupo'],
-  });
-}
-
+    return this.maestroRepository.findOne({
+      where: { id },
+      relations: ['grupo'],
+    });
+  }
 
   update(id: number, updateMaestroDto: UpdateMaestroDto) {
     return this.maestroRepository.update(id, updateMaestroDto);
