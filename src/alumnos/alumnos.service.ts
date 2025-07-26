@@ -14,9 +14,8 @@ export class AlumnosService {
     const alumno = this.alumnoRepository.create(createAlumnoDto);
     return await this.alumnoRepository.save(alumno);
   }
-
-  async findAll() {
-    return await this.alumnoRepository.find();
+  findAll() {
+    return this.alumnoRepository.find({ relations: ['grupo'] });
   }
 
   async findOne(id: number) {
@@ -26,24 +25,21 @@ export class AlumnosService {
     });
   }
   async findByTutor(tutorId: number) {
-  return await this.alumnoRepository.find({
-    where: {
-      tutor: { id: tutorId },
-    },
-    relations: ['tutor', 'grupo'],
-  });
+    return await this.alumnoRepository.find({
+      where: {
+        tutor: { id: tutorId },
+      },
+      relations: ['tutor', 'grupo'],
+    });
   }
   async findByGrupo(grupoId: number) {
-  return await this.alumnoRepository.find({
-    where: {
-      grupo: { id: grupoId },
-    },
-    relations: ['tutor', 'grupo'],
-  });
-}
-
-
-
+    return await this.alumnoRepository.find({
+      where: {
+        grupo: { id: grupoId },
+      },
+      relations: ['tutor', 'grupo'],
+    });
+  }
 
   async update(id: number, updateAlumnoDto: UpdateAlumnoDto) {
     await this.alumnoRepository.update(id, updateAlumnoDto);
