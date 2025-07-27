@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Grupochido } from 'src/grupos/entities/grupo.entity';
 
 export class CreateMaestroDto {
@@ -23,6 +23,10 @@ export class CreateMaestroDto {
   @IsNotEmpty()
   contrasena: string;
 
+  @IsNumber()
   @IsNotEmpty()
-  grupo: Grupochido;
+  grupoId: number; // <-- Aquí tienes un decorador para string pero es number en el tipo
+  @IsOptional()
+  @IsString()
+  imagenBase64?: string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMaestroDto } from './dto/create-maestro.dto';
 import { UpdateMaestroDto } from './dto/update-maestro.dto';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Maestro } from './entities/maestro.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -15,8 +15,11 @@ export class MaestrosService {
     return this.maestroRepository.save(maestro);
   }
 
-  findAll() {
-    return this.maestroRepository.find();
+  // maestros.service.ts
+  async findAll(): Promise<Maestro[]> {
+    return this.maestroRepository.find({
+      relations: ['grupo'], // <- Esto asegura que se incluya el objeto grupo completo
+    });
   }
 
   async findOne(id: number) {
