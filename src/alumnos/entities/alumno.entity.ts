@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -29,7 +30,11 @@ export class Alummno {
   @Column({ type: 'longtext', nullable: true })
   imagenBase64: string;
 
-  @ManyToOne(() => Tutore, (tutore) => tutore.alumno, { nullable: true })
+  @Column({ nullable: true })
+  tutorId: number;
+
+  @ManyToOne(() => Tutore, (tutor) => tutor.alumno, { eager: true })
+  @JoinColumn({ name: 'tutorId' })
   tutor: Tutore;
 
   @ManyToOne(() => Grupochido, (grupo) => grupo.alumnos, { nullable: false })

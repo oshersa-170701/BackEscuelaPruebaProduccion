@@ -3,17 +3,28 @@ import { CreateAlumnoDto } from './dto/create-alumno.dto';
 import { UpdateAlumnoDto } from './dto/update-alumno.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Alummno } from './entities/alumno.entity';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 
 @Injectable()
 export class AlumnosService {
   @InjectRepository(Alummno)
   private readonly alumnoRepository: Repository<Alummno>;
-
   async create(createAlumnoDto: CreateAlumnoDto) {
-    const alumno = this.alumnoRepository.create(createAlumnoDto);
+    const { grupoId, tutorId, ...rest } = createAlumnoDto;
+
+    const alumnoData: DeepPartial<Alummno> = {
+      ...rest,
+      grupo: { id: grupoId },
+    };
+
+    if (tutorId) {
+      alumnoData.tutor = { id: tutorId };
+    }
+
+    const alumno = this.alumnoRepository.create(alumnoData);
     return await this.alumnoRepository.save(alumno);
   }
+
   findAll() {
     return this.alumnoRepository.find({ relations: ['grupo'] });
   }

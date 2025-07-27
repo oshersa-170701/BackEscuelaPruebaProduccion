@@ -23,7 +23,7 @@ export class CreateAlumnoDto {
   @IsNumber()
   @IsNotEmpty()
   grupoId: number; // <-- Aquí tienes un decorador para string pero es number en el tipo
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
   tutorId?: number;
 }
