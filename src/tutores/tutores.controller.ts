@@ -33,7 +33,7 @@ export class TutoresController {
     return this.tutoresService.findOne(+id);
   }
 
-  @Patch(':id') // ← acepta un id como parámetro
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateTutoreDto: UpdateTutoreDto) {
     return this.tutoresService.update(+id, updateTutoreDto);
   }
@@ -55,7 +55,7 @@ export class TutoresController {
     if (!tutor) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
-    return { tutor }; // o devuelve token si usas JWT
+    return { tutor };
   }
   @Get('perfil/:correo')
   async getPerfil(@Param('correo') correo: string) {
