@@ -1,4 +1,11 @@
+import { IsInt, IsOptional, IsDateString } from 'class-validator';
+
 export class UpdateEntradaDto {
+  @IsOptional()
+  @IsInt()
   alumnoId?: number;
-  DateEntrada?: Date;
+
+  @IsOptional()
+  @IsDateString()
+  DateEntrada?: string;
 }

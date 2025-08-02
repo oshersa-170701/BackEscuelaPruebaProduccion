@@ -4,7 +4,7 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Between, Not } from 'typeorm';
+import { Repository, Between } from 'typeorm';
 import { CreateEntradaDto } from './dto/create-entrada.dto';
 import { Entrada } from './entities/entrada.entity';
 import { Alummno } from 'src/alumnos/entities/alumno.entity';
@@ -58,61 +58,17 @@ export class EntradasService {
   }
 
   async update(id: number, updateEntradaDto: UpdateEntradaDto) {
-    // Buscar la entrada por ID
-    const entrada = await this.entradaRepo.findOne({
-      where: { id },
-      relations: ['alumno'],
-    });
-    if (!entrada) {
-      throw new NotFoundException('Entrada no encontrada');
-    }
+    const entrada = await this.entradaRepo.findOneBy({ id });
+    if (!entrada) throw new NotFoundException('Entrada no encontrada');
 
-    // Si se quiere cambiar el alumno, validar que exista
-    if (
-      updateEntradaDto.alumnoId &&
-      updateEntradaDto.alumnoId !== entrada.alumno.id
-    ) {
-      const alumno = await this.alumnoRepo.findOne({
-        where: { id: updateEntradaDto.alumnoId },
-      });
-      if (!alumno) {
-        throw new NotFoundException('Alumno para actualización no encontrado');
-      }
-      entrada.alumno = alumno;
-    }
-
-    // Si se quiere actualizar la fecha de entrada, validar que no haya otra asistencia ese día para ese alumno
-    if (updateEntradaDto.DateEntrada) {
-      const fecha = new Date(updateEntradaDto.DateEntrada);
-      const inicioDia = new Date(fecha);
-      inicioDia.setHours(0, 0, 0, 0);
-      const finDia = new Date(fecha);
-      finDia.setHours(23, 59, 59, 999);
-
-      const existeOtraEntrada = await this.entradaRepo.findOne({
-        where: {
-          alumno: { id: entrada.alumno.id },
-          DateEntrada: Between(inicioDia, finDia),
-          id: Not(id), // Excluir la entrada actual
-        },
-      });
-
-      if (existeOtraEntrada) {
-        throw new ConflictException(
-          'El alumno ya tiene una asistencia registrada para esa fecha.',
-        );
-      }
-      entrada.DateEntrada = fecha;
-    }
-
-    // Actualizar cualquier otro campo que venga en el DTO
     Object.assign(entrada, updateEntradaDto);
-
-    // Guardar cambios
     return this.entradaRepo.save(entrada);
   }
 
-  remove(id: number) {
-    return this.entradaRepo.delete(id);
+  async remove(id: number) {
+    const entrada = await this.entradaRepo.findOneBy({ id });
+    if (!entrada) throw new NotFoundException('Entrada no encontrada');
+
+    return this.entradaRepo.remove(entrada);
   }
 }
