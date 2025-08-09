@@ -13,11 +13,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
 @Module({
   imports: [ TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: '',
-    database: 'escuelita2',
+    url: 'mysql://root:twdlmzjSsrthYiEpKhkBcxOlKplVoxbw@mysql.railway.internal:3306/railway',
     synchronize: true,
     autoLoadEntities: true,
   }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
