@@ -16,6 +16,10 @@ import { AdministradoresModule } from './administradores/administradores.module'
     url: process.env.DATABASE_URL,
     synchronize: true,
     autoLoadEntities: true,
+    extra: {
+    authPlugins: {
+      mysql_clear_password: () => () => Buffer.from(process.env.MYSQL_PASSWORD || ''),
+    },
   }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
   controllers: [AppController],
   providers: [AppService],
