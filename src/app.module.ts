@@ -13,7 +13,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
 @Module({
   imports: [ TypeOrmModule.forRoot({
     type: 'mysql',
-    url: 'mysql://root:twdlmzjSsrthYiEpKhkBcxOlKplVoxbw@mysql.railway.internal:3306/railway',
+    url: process.env.DATABASE_URL,
     synchronize: true,
     autoLoadEntities: true,
   }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
