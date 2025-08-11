@@ -19,7 +19,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
       username: 'root',
       password: 'HCWYmInGybXzChFAwuzvRFGJzrOVNutu',
       database: 'railway',
-      url: 'mysql://root:HCWYmInGybXzChFAwuzvRFGJzrOVNutu@mysql.railway.internal:3306/railway',
+      url: '${{MySQL.MYSQL_URL}}',
       synchronize: false,
       autoLoadEntities: true,
     }),
