@@ -21,6 +21,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // ⚠ En producción se recomienda false
+      // driver: require('mysql2'), // Forzar mysql2 - REMOVED
     }),
     GruposModule,
     TutoresModule,
