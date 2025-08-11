@@ -11,16 +11,26 @@ import { MaestrosModule } from './maestros/maestros.module';
 import { EntradasModule } from './entradas/entradas.module';
 import { AdministradoresModule } from './administradores/administradores.module';
 @Module({
-  imports: [ TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: '',
-    database: 'escuelita2',
-    synchronize: true,
-    autoLoadEntities: true,
-  }), GruposModule, TutoresModule, HorariosModule, SalidasModule, AlumnosModule, MaestrosModule, EntradasModule, AdministradoresModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'mysql.railway.internal',
+      port: 3306,
+      username: 'root',
+      password: 'euRXpraAxKiUbEYdUyIBrzcMniNzCJdC',
+      database: 'railway',
+      synchronize: true,
+      autoLoadEntities: true,
+    }),
+    GruposModule,
+    TutoresModule,
+    HorariosModule,
+    SalidasModule,
+    AlumnosModule,
+    MaestrosModule,
+    EntradasModule,
+    AdministradoresModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
