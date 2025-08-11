@@ -14,10 +14,10 @@ import { AdministradoresModule } from './administradores/administradores.module'
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql.railway.internal',
+      host: 'mysql://root:HCWYmInGybXzChFAwuzvRFGJzrOVNutu@nozomi.proxy.rlwy.net:17912/railway',
       port: 3306,
       username: 'root',
-      password: 'euRXpraAxKiUbEYdUyIBrzcMniNzCJdC',
+      password: 'HCWYmInGybXzChFAwuzvRFGJzrOVNutu',
       database: 'railway',
       synchronize: false,
       autoLoadEntities: true,
