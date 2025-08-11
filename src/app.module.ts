@@ -14,14 +14,13 @@ import { AdministradoresModule } from './administradores/administradores.module'
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT, 10),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
+      host: 'mysql.railway.internal',
+      port: 3306,
+      username: 'root',
+      password: 'euRXpraAxKiUbEYdUyIBrzcMniNzCJdC',
+      database: 'railway',
+      synchronize: true,
       autoLoadEntities: true,
-      synchronize: true, // ⚠ En producción se recomienda false
-      // driver: require('mysql2'), // Forzar mysql2 - REMOVED
     }),
     GruposModule,
     TutoresModule,
