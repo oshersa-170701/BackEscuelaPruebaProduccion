@@ -19,7 +19,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
       username: 'root',
       password: 'euRXpraAxKiUbEYdUyIBrzcMniNzCJdC',
       database: 'railway',
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
     }),
     GruposModule,
